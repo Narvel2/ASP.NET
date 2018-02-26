@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AdrianPiecykLaby5" Class="AdrianPiecykLaby5DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-4GFJJ97\SQLEXPRESS;Initial Catalog=AdrianPiecykLaby5;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="AdrianPiecykLaby5ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Connector" Member="Connectors">
+    <Type Name="Connector">
+      <Column Name="CoursesID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StudentsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="Student_Connector" Member="Student" ThisKey="StudentsID" OtherKey="StudentsID" Type="Student" IsForeignKey="true" />
+      <Association Name="Course_Connector" Member="Course" ThisKey="CoursesID" OtherKey="CoursesID" Type="Course" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Students" Member="Students">
+    <Type Name="Student">
+      <Column Name="StudentsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Student_Connector" Member="Connectors" ThisKey="StudentsID" OtherKey="StudentsID" Type="Connector" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Courses" Member="Courses">
+    <Type Name="Course">
+      <Column Name="CoursesID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ECTSPoints" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Course_Connector" Member="Connectors" ThisKey="CoursesID" OtherKey="CoursesID" Type="Connector" />
+    </Type>
+  </Table>
+</Database>
